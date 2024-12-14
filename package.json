@@ -1,11 +1,23 @@
 {
+  "name": "do-something-for-a-minute",
+  "version": "1.0.0",
+  "description": "A simple and elegant one-minute timer to help you focus on a single task",
+  "author": {
+    "name": "Mustafa Saraç",
+    "url": "https://mustafasarac.com"
+  },
+  "homepage": "https://dosomethingforaminute.com",
+  "license": "MIT",
   "dependencies": {
     "next": "^15.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "devDependencies": {
     "@types/node": "22.10.2",
