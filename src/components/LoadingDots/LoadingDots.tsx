@@ -1,39 +1,33 @@
-'use client'
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
-export const LoadingDots: React.FC = () => {
-  const dotVariants = {
-    hidden: { opacity: 0.2, scale: 0.8 },
-    visible: { opacity: 0.5, scale: 1 }
-  };
-
-  const containerVariants = {
-    hidden: { transition: { staggerChildren: 0 } },
-    visible: { transition: { staggerChildren: 0.2, repeat: Infinity } }
-  };
+const LoadingDots = () => {
+  const dots = React.useMemo(() => [0, 1, 2], []);
 
   return (
-    <motion.div 
-      className="flex gap-1.5"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {[0, 1, 2].map((index) => (
+    <div className="flex space-x-1">
+      {dots.map((index) => (
         <motion.div
           key={index}
-          className="w-1.5 h-1.5 bg-gray-500 rounded-full"
-          variants={dotVariants}
+          className="w-2 h-2 bg-gray-600 rounded-full"
+          initial={{ scale: 1, opacity: 0.3 }}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 1, 0.3],
+          }}
           transition={{
-            duration: 0.5,
+            duration: 1,
             repeat: Infinity,
-            repeatType: "reverse",
-            delay: index * 0.2
+            ease: "easeInOut",
+            times: [0, 0.5, 1],
+            delay: index * 0.333,
           }}
         />
       ))}
-    </motion.div>
+    </div>
   );
 };
+
+export default LoadingDots;

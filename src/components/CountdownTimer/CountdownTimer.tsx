@@ -11,14 +11,14 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
   onTimerUpdate
 }) => {
   const [seconds, setSeconds] = useState(initialSeconds);
-  const [mounted, setMounted] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    setIsClient(true);
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!isClient) return;
 
     if (seconds <= TIMER_CONFIG.MIN_SECONDS) {
       onComplete?.();
@@ -35,22 +35,14 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
     }, TIMER_CONFIG.UPDATE_INTERVAL);
 
     return () => clearInterval(timer);
-  }, [mounted, onComplete, onTimerUpdate]);
+  }, [isClient, seconds, onComplete, onTimerUpdate]);
 
-  if (!mounted) {
-    return (
-      <div className="flex flex-col items-center justify-center">
-        <div className="min-w-[100px] text-center inline-block text-[14rem] leading-none tracking-wider font-serif">
-          {formatTime(initialSeconds)}
-        </div>
-      </div>
-    );
-  }
+  const timerDisplay = formatTime(seconds);
 
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="min-w-[100px] text-center inline-block text-[14rem] leading-none tracking-wider font-serif">
-        {formatTime(seconds)}
+        {timerDisplay}
       </div>
     </div>
   );

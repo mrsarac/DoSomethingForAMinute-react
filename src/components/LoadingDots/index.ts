@@ -1,1 +1,1 @@
-export * from './LoadingDots';
+export { default as LoadingDots } from "./LoadingDots";
