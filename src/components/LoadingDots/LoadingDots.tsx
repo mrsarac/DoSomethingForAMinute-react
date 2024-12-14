@@ -7,11 +7,11 @@ const LoadingDots = () => {
   const dots = React.useMemo(() => [0, 1, 2], []);
 
   return (
-    <div className="flex space-x-1">
+    <div className="flex space-x-0.5 sm:space-x-1">
       {dots.map((index) => (
         <motion.div
           key={index}
-          className="w-2 h-2 bg-gray-600 rounded-full"
+          className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-600 rounded-full"
           initial={{ scale: 1, opacity: 0.3 }}
           animate={{
             scale: [1, 1.5, 1],

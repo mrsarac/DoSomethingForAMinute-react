@@ -5,6 +5,8 @@ import Script from 'next/script';
 const cormorant = Cormorant({
   subsets: ['latin'],
   weight: ['400', '700'],
+  display: 'swap', // Optimize font loading
+  variable: '--font-cormorant', // Enable CSS variable for font
 });
 
 export const metadata = {
@@ -18,6 +20,12 @@ export const metadata = {
     email: false,
     address: false,
     telephone: false,
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: 'no',
   },
   openGraph: {
     title: 'Do Something For A Minute - One Minute Timer',
@@ -55,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cormorant.className}>
+    <html lang="en" className={`${cormorant.className} ${cormorant.variable}`}>
       <head>
         {/* Google Analytics */}
         <Script
@@ -100,7 +108,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#EDEDED] text-[#32302D]">{children}</body>
+      <body className="bg-[#EDEDED] text-[#32302D] antialiased">{children}</body>
     </html>
   );
 }
