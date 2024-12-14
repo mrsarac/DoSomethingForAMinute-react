@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { CountdownTimer } from "@/components/CountdownTimer";
-import { LoadingDots } from "@/components/LoadingDots";
 import { TIMER_CONFIG } from "@/constants/timer";
 
 export default function Home() {
@@ -61,7 +60,7 @@ export default function Home() {
             Do Something For A Minute
           </button>
         ) : (
-          <LoadingDots />
+          <></>
         )}
       </footer>
     </main>
