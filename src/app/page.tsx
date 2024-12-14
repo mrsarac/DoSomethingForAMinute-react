@@ -18,7 +18,7 @@ export default function Home() {
         <CountdownTimer />
       </section>
       <footer className="mt-8 text-sm text-gray-500">
-        <p>Created by Mustafa Saraç</p>
+        <p>&nbsp;</p>
       </footer>
     </main>
   );
