@@ -26,7 +26,7 @@ export default function Home() {
 
   if (!mounted) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center bg-white text-black px-4">
+      <main className="min-h-screen flex flex-col items-center justify-center text-black px-4">
         <header className="text-center mb-6 sm:mb-8">
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif">Do Something For A Minute</h1>
           <p className="mt-2 text-sm sm:text-base text-gray-600">
@@ -41,7 +41,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-white text-black px-4">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-custom-bg text-custom-text px-4">
       <header className="text-center mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif">Do Something For A Minute</h1>
         <p className="mt-2 text-sm sm:text-base text-gray-600">

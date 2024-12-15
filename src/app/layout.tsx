@@ -108,7 +108,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#EDEDED] text-[#32302D] antialiased">{children}</body>
+      <body className="bg-custom-bg text-custom-text antialiased">{children}</body>
     </html>
   );
 }
