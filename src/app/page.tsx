@@ -77,7 +77,7 @@ export default function Home() {
                 onClick={handleTitleClick}
                 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif cursor-pointer"
               >
-                {title} For A Minute
+                {title} for a minute
               </h1>
             )}
             <p className="mt-2 text-sm sm:text-base text-gray-600">
@@ -113,7 +113,7 @@ export default function Home() {
               onClick={handleTitleClick}
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif cursor-pointer"
             >
-              {title} For A Minute
+              {title} for a minute
             </h1>
           )}
           <p className="text-sm sm:text-base text-gray-600">
@@ -129,7 +129,7 @@ export default function Home() {
               onClick={handleReset}
               className="px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm sm:text-base"
             >
-              {title} For A Minute
+              {title} for a minute
             </button>
           ) : (
             <></>
