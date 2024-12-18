@@ -83,17 +83,25 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
 
   const timerDisplay = formatTime(seconds);
 
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="min-w-[80px] sm:min-w-[100px] text-center inline-block text-7xl sm:text-8xl md:text-9xl lg:text-[14rem] leading-none tracking-wider font-serif">
         
         {timerDisplay}
       </div>
+
+
+      <div className="mt-4 h-4">
       {showSpeedMessage && (
-        <div className="mt-4">
+        <div>
           <span className="font-bold">{accelerationFactor}x </span> time is accelerating...
         </div>
       )}
+      </div>
     </div>
   );
 };
