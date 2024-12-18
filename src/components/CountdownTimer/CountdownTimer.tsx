@@ -14,6 +14,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
   const [isClient, setIsClient] = useState(false);
   const [isSpacePressed, setIsSpacePressed] = useState(false);
   const [showSpeedMessage, setShowSpeedMessage] = useState(false);
+  const [accelerationFactor, setAccelerationFactor] = useState(1);
 
   useEffect(() => {
     setIsClient(true);
@@ -31,6 +32,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
       if (event.code === 'Space') {
         setIsSpacePressed(false);
         setShowSpeedMessage(false);
+        setAccelerationFactor(1);
       }
     };
 
@@ -49,11 +51,12 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
     if (seconds <= TIMER_CONFIG.MIN_SECONDS) {
       onComplete?.();
       onTimerUpdate?.(seconds);
+      setAccelerationFactor(1);
       return;
     }
 
     const interval = isSpacePressed
-      ? TIMER_CONFIG.UPDATE_INTERVAL / 3
+      ? TIMER_CONFIG.UPDATE_INTERVAL / accelerationFactor
       : TIMER_CONFIG.UPDATE_INTERVAL;
 
     const timer = setInterval(() => {
@@ -65,13 +68,24 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
     }, interval);
 
     return () => clearInterval(timer);
-  }, [isClient, seconds, onComplete, onTimerUpdate, isSpacePressed]);
+  }, [isClient, seconds, onComplete, onTimerUpdate, isSpacePressed, accelerationFactor]);
+
+  useEffect(() => {
+    if (isSpacePressed) {
+      const accelerationTimer = setInterval(() => {
+        setAccelerationFactor(prevFactor => prevFactor * 2);
+      }, 1000);
+
+      return () => clearInterval(accelerationTimer);
+    }
+  }, [isSpacePressed]);
 
   const timerDisplay = formatTime(seconds);
 
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="min-w-[80px] sm:min-w-[100px] text-center inline-block text-7xl sm:text-8xl md:text-9xl lg:text-[14rem] leading-none tracking-wider font-serif">
+        <span className="font-bold">({accelerationFactor}x) </span>
         {timerDisplay}
       </div>
       {showSpeedMessage && (
