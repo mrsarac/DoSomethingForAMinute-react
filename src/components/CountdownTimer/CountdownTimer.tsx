@@ -22,7 +22,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code === 'Space') {
+      if (event.code === 'Space' && seconds > 0) {
         setIsSpacePressed(true);
         setShowSpeedMessage(true);
       }
@@ -43,7 +43,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, []);
+  }, [seconds]);
 
   useEffect(() => {
     if (!isClient) return;
@@ -52,6 +52,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
       onComplete?.();
       onTimerUpdate?.(seconds);
       setAccelerationFactor(1);
+      setShowSpeedMessage(false);
       return;
     }
 
@@ -74,7 +75,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
     if (isSpacePressed) {
       const accelerationTimer = setInterval(() => {
         setAccelerationFactor(prevFactor => prevFactor * 2);
-      }, 1000);
+      }, 500);
 
       return () => clearInterval(accelerationTimer);
     }
@@ -90,7 +91,7 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
       </div>
       {showSpeedMessage && (
         <div className="mt-4">
-         <span className="font-bold">{accelerationFactor} x </span> zaman hızlandırılıyor...
+          <span className="font-bold">{accelerationFactor}x </span> time is accelerating...
         </div>
       )}
     </div>
