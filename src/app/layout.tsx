@@ -1,7 +1,6 @@
 import './globals.css';
 import { Cormorant } from 'next/font/google';
 import Script from 'next/script';
-import { IntercomProvider } from '@/components/IntercomProvider/IntercomProvider';
 
 const cormorant = Cormorant({
   subsets: ['latin'],
@@ -110,7 +109,6 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-custom-bg text-custom-text antialiased">
-        <IntercomProvider />
         {children}
       </body>
     </html>

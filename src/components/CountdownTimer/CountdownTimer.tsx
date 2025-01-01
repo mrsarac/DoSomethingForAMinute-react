@@ -91,7 +91,12 @@ export const CountdownTimer: React.FC<TimerProps & { onTimerUpdate?: (seconds: n
     <div className="flex flex-col items-center justify-center">
       <div className="min-w-[80px] sm:min-w-[100px] text-center inline-block text-7xl sm:text-8xl md:text-9xl lg:text-[14rem] leading-none tracking-wider font-serif">
         
-        {timerDisplay}
+        
+        <div className="tabular-nums tracking-wider font-serif"
+        style={{fontVariantNumeric: 'tabular-nums', letterSpacing: '0.1em', textSizeAdjust: '100%'}}
+        >
+          {timerDisplay}
+        </div>
       </div>
 
 
